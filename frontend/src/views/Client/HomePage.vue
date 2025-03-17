@@ -1,9 +1,9 @@
 <script setup>
-import Search from "@/components/Client/Search.vue";
-import ListHotel from "@/components/Client/ListHotel.vue";
-import TrendingLocations from "@/components/Client/TrendingLocations.vue";
-import CarouselLocations from "@/components/Client/CarouselLocations.vue";
-import CarouselCategories from "@/components/Client/CarouselCategories.vue";
+import Search from "@/components/Client/HomePage/Search.vue";
+import ListHotel from "@/components/Client/HomePage/ListHotel.vue";
+import TrendingLocations from "@/components/Client/HomePage/TrendingLocations.vue";
+import CarouselLocations from "@/components/Client/HomePage/CarouselLocations.vue";
+import CarouselCategories from "@/components/Client/HomePage/CarouselCategories.vue";
 </script>
 
 <template>

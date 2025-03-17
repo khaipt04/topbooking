@@ -106,8 +106,8 @@ const open = ref(false)
 
             <Menu as="div" class="relative inline-block text-left ml-auto">
               <div v-if="true">
-                <router-link to="" class="text-white bg-blue-500 hover:bg-blue-600 font-medium rounded-lg text-sm px-5 py-2.5 transition-all cursor-pointer mr-2">Đăng nhập</router-link>
-                <router-link to="" class="text-white bg-blue-500 hover:bg-blue-600 font-medium rounded-lg text-sm px-5 py-2.5 transition-all cursor-pointer">Đăng kí</router-link>
+                <router-link to="/auth/login" class="text-white bg-blue-500 hover:bg-blue-600 font-medium rounded-lg text-sm px-5 py-2.5 transition-all cursor-pointer mr-2">Đăng nhập</router-link>
+                <router-link to="/auth/register" class="text-white bg-blue-500 hover:bg-blue-600 font-medium rounded-lg text-sm px-5 py-2.5 transition-all cursor-pointer">Đăng kí</router-link>
               </div>
 
               <div v-if="false">

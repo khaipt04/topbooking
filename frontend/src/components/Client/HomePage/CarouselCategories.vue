@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import Title from "@/components/Client/Title.vue";
+import Title from "@/components/Client/HomePage/Title.vue";
 
 import {
   ChevronRightIcon,
