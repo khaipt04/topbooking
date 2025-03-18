@@ -3,7 +3,7 @@
 </script>
 
 <template>
-test 2
+  $END$
 </template>
 
 <style scoped>
