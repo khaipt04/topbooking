@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '@/views/Client/HomePage.vue'
-import Test1 from "@/views/Client/Test1.vue";
-import Test2 from "@/views/Client/Test2.vue";
+import RegisterPartnerPage from "@/views/Client/RegisterPartnerPage.vue";
 import AuthLayout from "@/views/Client/Auth/AuthLayout.vue";
 import LoginPage from "@/views/Client/Auth/LoginPage.vue";
 import RegisterPage from "@/views/Client/Auth/RegisterPage.vue";
@@ -11,13 +10,16 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
       component: HomePage,
     },
     {
-      path: '/test2',
-      name: 'test2',
-      component: Test2,
+      path: '/home',
+      redirect: '/',
+      component: HomePage,
+    },
+    {
+      path: '/register-partner-hotel',
+      component: RegisterPartnerPage,
     },
     {
       path: '/auth',

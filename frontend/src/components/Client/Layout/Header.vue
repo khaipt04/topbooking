@@ -17,11 +17,9 @@ import {
 import {
   Bars3Icon,
   ArrowLeftCircleIcon,
-  UserPlusIcon,
-  KeyIcon,
   BuildingOffice2Icon,
   UserCircleIcon,
-  XMarkIcon
+  XMarkIcon,
 } from '@heroicons/vue/24/outline'
 
 const route = useRoute();
@@ -54,7 +52,7 @@ const open = ref(false)
               <div class="space-y-6 border-t border-gray-200 px-4 py-6">
                 <div class="flow-root">
                   <router-link to="/" class="-m-2 my-2 block p-2 font-medium text-gray-900">Tìm chỗ nghỉ</router-link>
-                  <router-link to="/test1" class="-m-2 my-2 block p-2 font-medium text-gray-900">Đăng kí đối tác</router-link>
+                  <router-link to="/register-partner-hotel" class="-m-2 my-2 block p-2 font-medium text-gray-900">Đăng kí đối tác</router-link>
                 </div>
               </div>
             </DialogPanel>
@@ -96,7 +94,7 @@ const open = ref(false)
 
                 <Popover class="flex">
                   <div class="relative flex">
-                    <RouterLink to="test2" :class="[isActive('/test2') ? 'border-white text-white' : 'border-transparent text-white',
+                    <RouterLink to="/register-partner-hotel" :class="[isActive('/register-partner-hotel') ? 'border-white text-white' : 'border-transparent text-white',
                     'relative z-10 -mb-px flex items-center border-b-2 pt-px text-base font-medium transition-colors' +
                     'duration-200 ease-out outline-none cursor-pointer']">Đăng kí đối tác</RouterLink>
                   </div>
@@ -105,9 +103,9 @@ const open = ref(false)
             </PopoverGroup>
 
             <Menu as="div" class="relative inline-block text-left ml-auto">
-              <div v-if="true">
-                <router-link to="/auth/login" class="text-white bg-blue-500 hover:bg-blue-600 font-medium rounded-lg text-sm px-5 py-2.5 transition-all cursor-pointer mr-2">Đăng nhập</router-link>
-                <router-link to="/auth/register" class="text-white bg-blue-500 hover:bg-blue-600 font-medium rounded-lg text-sm px-5 py-2.5 transition-all cursor-pointer">Đăng kí</router-link>
+              <div v-if="true" class="flex items-center">
+                <router-link to="/auth/login" class="text-white bg-blue-500 hover:bg-blue-600 font-medium rounded-lg text-sm px-5 py-2.5 transition-all cursor-pointer block">Đăng nhập</router-link>
+                <router-link to="/auth/register" class="text-white bg-blue-500 hover:bg-blue-600 font-medium rounded-lg text-sm px-5 py-2.5 transition-all cursor-pointer hidden sm:block lg:block ml-2">Đăng kí</router-link>
               </div>
 
               <div v-if="false">
