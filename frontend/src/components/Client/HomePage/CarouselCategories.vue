@@ -25,7 +25,6 @@ const scrollRight = () => {
     slider.value.scrollBy({ left: 250, behavior: "smooth" });
   }
 };
-
 </script>
 
 <template>

@@ -5,11 +5,11 @@ import {
   PlusIcon
 } from '@heroicons/vue/24/outline'
 
-const location = ref('')
-const checkin_date = ref('')
-const checkout_date = ref('')
-const adult = ref(2)
-const children = ref(0)
+let location = ref('')
+let checkin_date = ref('')
+let checkout_date = ref('')
+let adult = ref(2)
+let children = ref(0)
 
 const options = ref([
     "Ho Chi Minh",
@@ -94,14 +94,14 @@ const diminishChildren = () => {
           <div class="w-full mb-2 sm:mb-2 lg:mb-0">
             <label for="checkin_date" class="text-gray-700 font-semibold">Ngày nhận phòng</label>
             <div class="bg-white flex justify-between w-full px-4 py-2 rounded-md border border-gray-300 hover:ring-blue-500 hover:border-blue-500 mt-2">
-              <input type="date" class="w-full" id="checkin_date"/>
+              <input type="date" class="w-full p-0 border-none outline-0 ring-0" id="checkin_date"/>
             </div>
           </div>
 
           <div class="w-full mb-2 sm:mb-2 lg:mb-0">
             <label for="checkout_date" class="text-gray-700 font-semibold">Ngày trả phòng</label>
             <div class="bg-white flex justify-between w-full px-4 py-2 rounded-md border border-gray-300 hover:ring-blue-500 hover:border-blue-500 mt-2">
-              <input type="date" class="w-full" id="checkout_date"/>
+              <input type="date" class="w-full p-0 border-none outline-0 ring-0" id="checkout_date"/>
             </div>
           </div>
 

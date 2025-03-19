@@ -1,7 +1,7 @@
 <script setup>
 import {ref} from "vue";
 
-const image = ref(null);
+let image = ref(null);
 
 const handleFileUpload = (event) => {
   const file = event.target.files[0];
