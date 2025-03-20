@@ -1,9 +1,19 @@
 <script setup>
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch } from 'vue';
 import {
   MinusIcon,
   PlusIcon
-} from '@heroicons/vue/24/outline'
+} from '@heroicons/vue/24/outline';
+
+const options = ref([
+  "Ho Chi Minh",
+  "Ha Noi",
+  "Ha Giang",
+  "Phu Quoc",
+  "Con Dao",
+  "Ben Tre",
+  "Tien Giang"
+])
 
 let location = ref('')
 let checkin_date = ref('')
@@ -11,22 +21,7 @@ let checkout_date = ref('')
 let adult = ref(2)
 let children = ref(0)
 
-const options = ref([
-    "Ho Chi Minh",
-    "Ha Noi",
-    "Ha Giang",
-    "Phu Quoc",
-    "Con Dao",
-    "Ben Tre",
-    "Tien Giang"
-])
-
 const showDropdown = ref(false)
-const filteredOptions = computed(() => {
-  return options.value.filter((option) =>
-      option.toLowerCase().includes(location.value.toLowerCase())
-  ).slice(0, 5);
-})
 const selectOption = (option) => {
   location.value = option
   showDropdown.value = false
@@ -36,6 +31,11 @@ const hideDropdown = () => {
     showDropdown.value = false
   }, 200)
 }
+const filteredOptions = computed(() => {
+  return options.value.filter((option) =>
+      option.toLowerCase().includes(location.value.toLowerCase())
+  ).slice(0, 5)
+})
 
 const showDropdownPeople = ref(false)
 const increaseAdult = () => {
@@ -48,7 +48,6 @@ const diminishAdult = () => {
     adult.value--
   }
 }
-
 const increaseChildren = () => {
   children.value++
 }
@@ -94,14 +93,14 @@ const diminishChildren = () => {
           <div class="w-full mb-2 sm:mb-2 lg:mb-0">
             <label for="checkin_date" class="text-gray-700 font-semibold">Ngày nhận phòng</label>
             <div class="bg-white flex justify-between w-full px-4 py-2 rounded-md border border-gray-300 hover:ring-blue-500 hover:border-blue-500 mt-2">
-              <input type="date" class="w-full p-0 border-none outline-0 ring-0" id="checkin_date"/>
+              <input type="date" class="w-full" id="checkin_date"/>
             </div>
           </div>
 
           <div class="w-full mb-2 sm:mb-2 lg:mb-0">
             <label for="checkout_date" class="text-gray-700 font-semibold">Ngày trả phòng</label>
             <div class="bg-white flex justify-between w-full px-4 py-2 rounded-md border border-gray-300 hover:ring-blue-500 hover:border-blue-500 mt-2">
-              <input type="date" class="w-full p-0 border-none outline-0 ring-0" id="checkout_date"/>
+              <input type="date" class="w-full" id="checkout_date"/>
             </div>
           </div>
 

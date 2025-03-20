@@ -12,18 +12,18 @@ import {
   MenuButton,
   MenuItems,
   MenuItem
-} from '@headlessui/vue'
-
+} from '@headlessui/vue';
 import {
   Bars3Icon,
   ArrowLeftCircleIcon,
   BuildingOffice2Icon,
   UserCircleIcon,
   XMarkIcon,
-} from '@heroicons/vue/24/outline'
+} from '@heroicons/vue/24/outline';
 
-const route = useRoute();
-const isActive = (path) => route.path === path;
+const route = useRoute()
+const isActive = (path) => route.path === path
+
 const open = ref(false)
 </script>
 
@@ -104,7 +104,11 @@ const open = ref(false)
 
             <Menu as="div" class="relative inline-block text-left ml-auto">
               <div v-if="true" class="flex items-center">
-                <router-link to="/auth/login" class="text-white bg-blue-500 hover:bg-blue-600 font-medium rounded-lg text-sm px-5 py-2.5 transition-all cursor-pointer block">Đăng nhập</router-link>
+                <router-link to="/auth/login" class="block sm:hidden lg:hidden">
+                  <UserCircleIcon class="h-10 w-10 text-white" />
+                </router-link>
+
+                <router-link to="/auth/login" class="text-white bg-blue-500 hover:bg-blue-600 font-medium rounded-lg text-sm px-5 py-2.5 transition-all cursor-pointer hidden sm:block lg:block">Đăng nhập</router-link>
                 <router-link to="/auth/register" class="text-white bg-blue-500 hover:bg-blue-600 font-medium rounded-lg text-sm px-5 py-2.5 transition-all cursor-pointer hidden sm:block lg:block ml-2">Đăng kí</router-link>
               </div>
 

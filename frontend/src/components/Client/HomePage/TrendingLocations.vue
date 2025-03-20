@@ -1,5 +1,6 @@
 <script setup>
 import Title from "@/components/Client/HomePage/Title.vue";
+
 defineProps({
   title: String,
   sub_title: String

@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from "vue";
 import Title from "@/components/Client/HomePage/Title.vue";
-
 import {
   ChevronRightIcon,
   ChevronLeftIcon
@@ -12,20 +11,17 @@ defineProps({
   sub_title: String
 })
 
-const slider = ref(null);
-
+const slider = ref(null)
 const scrollLeft = () => {
   if (slider.value) {
-    slider.value.scrollBy({ left: -250, behavior: "smooth" });
+    slider.value.scrollBy({ left: -250, behavior: "smooth" })
   }
-};
-
+}
 const scrollRight = () => {
   if (slider.value) {
-    slider.value.scrollBy({ left: 250, behavior: "smooth" });
+    slider.value.scrollBy({ left: 250, behavior: "smooth" })
   }
-};
-
+}
 </script>
 
 <template>

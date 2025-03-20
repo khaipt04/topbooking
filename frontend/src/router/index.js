@@ -1,9 +1,10 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomePage from '@/views/Client/HomePage.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import HomePage from '@/views/Client/HomePage.vue';
 import RegisterPartnerPage from "@/views/Client/RegisterPartnerPage.vue";
 import AuthLayout from "@/views/Client/Auth/AuthLayout.vue";
 import LoginPage from "@/views/Client/Auth/LoginPage.vue";
 import RegisterPage from "@/views/Client/Auth/RegisterPage.vue";
+import HotelPage from "@/views/Client/HotelPage.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,6 +12,7 @@ const router = createRouter({
     {
       path: '/',
       component: HomePage,
+      meta: { title: 'TopBooking - Tìm chỗ nghỉ' }
     },
     {
       path: '/home',
@@ -20,6 +22,7 @@ const router = createRouter({
     {
       path: '/register-partner-hotel',
       component: RegisterPartnerPage,
+      meta: { title: 'TopBooking - Đăng kí đối tác' }
     },
     {
       path: '/auth',
@@ -28,15 +31,32 @@ const router = createRouter({
       children: [
         {
           path: 'login',
-          component: LoginPage
+          component: LoginPage,
+          meta: { title: 'TopBooking - Đăng nhập' }
         },
         {
           path: 'register',
-          component: RegisterPage
+          component: RegisterPage,
+          meta: { title: 'TopBooking - Đăng kí' }
         }
       ]
     },
+    {
+      path: '/hotel/slug',
+      component: HotelPage,
+    },
+    {
+      path: '/hotels/data_fillter',
+      redirect: '/',
+      // component: HomePage,
+    }
   ],
 })
 
+router.beforeEach((to, from, next) => {
+  if (to.meta.title) {
+    document.title = to.meta.title;
+  }
+  next();
+});
 export default router

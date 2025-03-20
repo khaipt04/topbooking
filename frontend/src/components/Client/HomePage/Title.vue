@@ -3,7 +3,6 @@ defineProps({
   message: String,
   sub_message: String
 });
-
 </script>
 
 <template>
