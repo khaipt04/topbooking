@@ -2,14 +2,14 @@
 import {ref, watch} from "vue";
 import HotelOverview from "@/components/Client/HotelPage/HotelOverview.vue";
 import ListRoom from "@/components/Client/HotelPage/ListRoom.vue";
-import {useScroll} from "@/stores/hotelSinglePage.js";
+import {useScrollStore} from "@/stores/extensions.js";
 
-const scrollStore = useScroll()
+const scroll = useScrollStore()
 const targetSection = ref(null)
-watch(() => scrollStore.shouldScroll, (newValue) => {
+watch(() => scroll.shouldScroll, (newValue) => {
   if (newValue) {
     targetSection.value?.scrollIntoView({ behavior: 'smooth' })
-    scrollStore.resetScroll()
+    scroll.resetScroll()
   }
 })
 </script>

@@ -5,6 +5,7 @@ import AuthLayout from "@/views/Client/Auth/AuthLayout.vue";
 import LoginPage from "@/views/Client/Auth/LoginPage.vue";
 import RegisterPage from "@/views/Client/Auth/RegisterPage.vue";
 import HotelPage from "@/views/Client/HotelPage.vue";
+import HotelsFiltersPage from "@/views/Client/HotelsFiltersPage.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -46,11 +47,10 @@ const router = createRouter({
       component: HotelPage,
     },
     {
-      path: '/hotels/data_fillter',
-      redirect: '/',
-      // component: HomePage,
+      path: '/hotels/filters',
+      component: HotelsFiltersPage,
     }
-  ],
+  ]
 })
 
 router.beforeEach((to, from, next) => {

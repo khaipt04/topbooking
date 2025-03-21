@@ -103,8 +103,8 @@ let openUtilities = ref(false)
             Hình thức thanh toán:
           </p>
           <div class="mt-2">
-            <div class="badge badge-primary">Thanh toán trước</div>
-            <div class="badge badge-primary ml-2">Thanh toán khi nhận phòng</div>
+            <div class="badge badge-primary mr-2">Thanh toán trước</div>
+            <div class="badge badge-primary">Thanh toán khi nhận phòng</div>
           </div>
         </div>
         <div class="mt-5">

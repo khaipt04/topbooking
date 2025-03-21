@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import ImagesHotel from "@/components/Client/HotelPage/ImagesHotel.vue";
 import UtilitiesHotel from "@/components/Client/HotelPage/UtilitiesHotel.vue";
-import {useScroll} from "@/stores/hotelSinglePage.js";
+import {useScrollStore} from "@/stores/extensions.js";
 
 const images = ref([
   {
@@ -39,9 +39,9 @@ const images = ref([
   }
 ])
 
-const scrollStore = useScroll()
+const scroll = useScrollStore()
 const scrollToTarget = () => {
-  scrollStore.triggerScroll()
+  scroll.triggerScroll()
 }
 </script>
 
