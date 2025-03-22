@@ -2,14 +2,19 @@
 import {ref, defineProps, computed} from 'vue'
 import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue'
 
+//state
 const props = defineProps({
     images: Object
 })
 
+const currentIndex = ref(0)
+
 const images = ref(props.images)
 const countImage = images.value.length - 6
 
-const currentIndex = ref(0)
+let open = ref(false)
+
+//action
 const totalSlides = computed(() => images.value.length)
 
 const nextSlide = () => {
@@ -23,8 +28,6 @@ const prevSlide = () => {
     currentIndex.value--
   }
 }
-
-let open = ref(false)
 </script>
 
 <template>

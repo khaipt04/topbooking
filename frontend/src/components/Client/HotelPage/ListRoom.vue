@@ -2,6 +2,7 @@
 import {computed, ref} from 'vue'
 import {Dialog, DialogPanel, TransitionChild, TransitionRoot} from "@headlessui/vue";
 
+//state
 const images = ref([
   {
     id: 1,
@@ -38,7 +39,13 @@ const images = ref([
 ])
 
 const currentIndex = ref(0)
+
+let openImages = ref(false)
+let openUtilities = ref(false)
+
+//action
 const totalSlides = computed(() => images.value.length)
+
 const nextSlide = () => {
   if (currentIndex.value < totalSlides.value - 1) {
     currentIndex.value++
@@ -49,9 +56,6 @@ const prevSlide = () => {
     currentIndex.value--
   }
 }
-
-let openImages = ref(false)
-let openUtilities = ref(false)
 </script>
 
 <template>

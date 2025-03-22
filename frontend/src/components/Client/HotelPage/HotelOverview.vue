@@ -4,6 +4,7 @@ import ImagesHotel from "@/components/Client/HotelPage/ImagesHotel.vue";
 import UtilitiesHotel from "@/components/Client/HotelPage/UtilitiesHotel.vue";
 import {useScrollStore} from "@/stores/extensions.js";
 
+//state
 const images = ref([
   {
     id: 1,
@@ -38,8 +39,9 @@ const images = ref([
     url: "https://flowbite.s3.amazonaws.com/docs/gallery/featured/image.jpg"
   }
 ])
-
 const scroll = useScrollStore()
+
+//action
 const scrollToTarget = () => {
   scroll.triggerScroll()
 }

@@ -21,10 +21,12 @@ import {
   XMarkIcon,
 } from '@heroicons/vue/24/outline';
 
+//state
 const route = useRoute()
-const isActive = (path) => route.path === path
-
 const open = ref(false)
+
+//action
+const isActive = (path) => route.path === path
 </script>
 
 <template>
@@ -75,8 +77,8 @@ const open = ref(false)
 
             <!-- Logo -->
             <div class="ml-4 flex lg:ml-0">
-              <router-link to="/">
-                <span class="sr-only">Your Company</span>
+              <router-link to="/" class="outline-none ring-0 border-none">
+                <span class="sr-only">Top Booking</span>
                 <img class="h-8 w-auto" src="/TopBooking.png" alt="" />
               </router-link>
             </div>

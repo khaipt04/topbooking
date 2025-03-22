@@ -1,66 +1,95 @@
 <script setup>
-import { ref, computed } from 'vue';
+import {ref, computed, onMounted} from 'vue';
+import Pikaday from 'pikaday';
+import moment from "moment";
 import {useRoute} from "vue-router";
+import {vietnameseLang} from "@/constants/i18n.js";
+import {locations} from "@/constants/locations.js";
 import {
   MinusIcon,
   PlusIcon
 } from '@heroicons/vue/24/outline';
 
-const options = ref([
-  "Ho Chi Minh",
-  "Ha Noi",
-  "Ha Giang",
-  "Phu Quoc",
-  "Con Dao",
-  "Ben Tre",
-  "Tien Giang"
-])
+//sate
+let searchData = ref({
+  location: '',
+  checkin: '',
+  checkout: '',
+  adult: 2,
+  children: 0
+})
 
-let location = ref('')
-let checkin_date = ref('')
-let checkout_date = ref('')
-let adult = ref(2)
-let children = ref(0)
+let checkin = ref(null)
+let checkout = ref(null)
 
-let showDropdown = ref(false)
-const selectOption = (option) => {
-  location.value = option
-  showDropdown.value = false
-}
-const hideDropdown = () => {
+let showDropdownPeople = ref(false)
+let showDropdownLocations = ref(false)
+
+const route = useRoute()
+
+//action
+onMounted(() => {
+  if (checkin.value) {
+    new Pikaday({
+      field: checkin.value,
+      format: "DD/MM/YYYY",
+      i18n: vietnameseLang,
+      onSelect: (date) => {
+        checkin.value.value = moment(date).format("DD/MM/YYYY")
+        searchData.value.checkin = checkin.value.value
+      },
+    })
+  }
+  if (checkout.value) {
+    new Pikaday({
+      field: checkout.value,
+      format: "DD/MM/YYYY",
+      i18n: vietnameseLang,
+      onSelect: (date) => {
+        checkout.value.value = moment(date).format("DD/MM/YYYY")
+        searchData.value.checkout = checkout.value.value
+      },
+    })
+  }
+})
+
+const hideDropdownLocations = () => {
   setTimeout(() => {
-    showDropdown.value = false
-  }, 200)
+    showDropdownLocations.value = false;
+  }, 200);
+};
+
+const selectLocation = (location) => {
+  searchData.value.location = location
+  showDropdownLocations.value = false
 }
-const filteredOptions = computed(() => {
-  return options.value.filter((option) =>
-      option.toLowerCase().includes(location.value.toLowerCase())
+const filteredLocations = computed(() => {
+  return locations.filter((location) =>
+      location.toLowerCase().includes(searchData.value.location.toLowerCase())
   ).slice(0, 5)
 })
 
-let showDropdownPeople = ref(false)
 const increaseAdult = () => {
-  adult.value++
+  searchData.value.adult++
 }
 const diminishAdult = () => {
-  if(adult.value <= 0){
-    adult.value = 0
+  if(searchData.value.adult <= 0){
+    searchData.value.adult = 0
   } else {
-    adult.value--
+    searchData.value.adult--
   }
 }
 const increaseChildren = () => {
-  children.value++
+  searchData.value.children++
 }
 const diminishChildren = () => {
-  if(children.value <= 0){
-    children.value = 0
+  if(searchData.value.children <= 0){
+    searchData.value.children = 0
   } else {
-    children.value--
+    searchData.value.children--
   }
 }
 
-const route = useRoute()
 const isTrue = (path) => route.path === path
 </script>
 
@@ -83,42 +112,39 @@ const isTrue = (path) => route.path === path
         <form class="block sm:block lg:flex gap-2 justify-between items-center">
           <div class="relative w-full mb-2 sm:mb-2 lg:mb-0 mt-2 sm:mt-2 lg:mt-0">
             <input
-                v-model="location"
+                v-model="searchData.location"
                 type="text"
                 id="location"
                 placeholder="Bạn muốn đến đâu?"
+                autocomplete="off"
                 class="block w-full px-4 py-2 border outline-none bg-white border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
-                @focus="showDropdown = true"
-                @blur="hideDropdown"
+                @focus="showDropdownLocations = true"
+                @blur="hideDropdownLocations"
             />
 
-            <ul v-if="showDropdown" class="absolute w-full bg-white border border-gray-300 rounded-lg shadow-md mt-1">
+            <ul v-if="showDropdownLocations" class="absolute w-full bg-white border border-gray-300 rounded-lg shadow-md mt-1">
               <li
-                  v-for="(option, index) in filteredOptions"
+                  v-for="(location, index) in filteredLocations"
                   :key="index"
                   class="px-4 py-2 hover:bg-gray-200 cursor-pointer"
-                  @click="selectOption(option)"
+                  @click="selectLocation(location)"
               >
-                {{ option }}
+                {{ location }}
               </li>
             </ul>
           </div>
 
           <div class="w-full mb-2 sm:mb-2 lg:mb-0">
-            <div class="bg-white flex justify-between w-full px-4 py-2 rounded-md border border-gray-300 hover:ring-blue-500 hover:border-blue-500">
-              <input type="date" class="w-full" id="checkin_date"/>
-            </div>
+            <input type="button" ref="checkin" class="input pika-single text-start cursor-pointer bg-white w-full px-4 py-2 rounded-md border border-gray-300 hover:ring-blue-500 hover:border-blue-500 focus:ring-blue-500 focus:border-blue-500 focus:outline-0" value="Ngày nhận phòng"/>
           </div>
 
           <div class="w-full mb-2 sm:mb-2 lg:mb-0">
-            <div class="bg-white flex justify-between w-full px-4 py-2 rounded-md border border-gray-300 hover:ring-blue-500 hover:border-blue-500">
-              <input type="date" class="w-full" id="checkout_date"/>
-            </div>
+            <input type="button" ref="checkout" class="input pika-single text-start cursor-pointer bg-white w-full px-4 py-2 rounded-md border border-gray-300 hover:ring-blue-500 hover:border-blue-500 focus:ring-blue-500 focus:border-blue-500 focus:outline-0" value="Ngày trả phòng"/>
           </div>
 
           <div class="w-full mb-2 sm:mb-2 lg:mb-0 relative">
             <div @click="showDropdownPeople = !showDropdownPeople" class="bg-white flex justify-between w-full px-4 py-2 rounded-md border border-gray-300 hover:ring-blue-500 hover:border-blue-500 cursor-pointer">
-              {{ adult }} người lớn - {{ children }} trẻ em
+              {{ searchData.adult }} người lớn - {{ searchData.children }} trẻ em
             </div>
 
             <div v-if="showDropdownPeople" class="absolute w-full bg-white border border-gray-300 rounded-lg shadow-md mt-1 px-3 py-4">
@@ -126,7 +152,7 @@ const isTrue = (path) => route.path === path
                 <span>Người lớn:</span>
                 <div class="flex justify-between items-center w-1/2 p-2 border border-gray-500 rounded-lg">
                   <MinusIcon @click="diminishAdult" class="h-6 w-6 text-blue-500 cursor-pointer"/>
-                  <span>{{ adult }}</span>
+                  <span>{{ searchData.adult }}</span>
                   <PlusIcon @click="increaseAdult" class="h-6 w-6 text-blue-500 cursor-pointer"/>
                 </div>
               </div>
@@ -134,12 +160,12 @@ const isTrue = (path) => route.path === path
                 <span>Trẻ em:</span>
                 <div class="flex justify-between items-center w-1/2 p-2 border border-gray-500 rounded-lg">
                   <MinusIcon @click="diminishChildren" class="h-6 w-6 text-blue-500 cursor-pointer"/>
-                  <span>{{ children }}</span>
+                  <span>{{ searchData.children }}</span>
                   <PlusIcon @click="increaseChildren" class="h-6 w-6 text-blue-500 cursor-pointer"/>
                 </div>
               </div>
               <div class="mt-2">
-                <input @click="showDropdownPeople = !showDropdownPeople" class="focus:outline-none text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:ring-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 dark:focus:ring-blue-900 transition-all mt-2 sm:mt-2 lg:mt-0 cursor-pointer text-center w-full" value="Đóng">
+                <input @click="showDropdownPeople = false" class="focus:outline-none text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:ring-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 dark:focus:ring-blue-900 transition-all mt-2 sm:mt-2 lg:mt-0 cursor-pointer text-center w-full" value="Đóng">
               </div>
             </div>
           </div>
