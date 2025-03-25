@@ -1,5 +1,5 @@
 <script setup>
-import Search from "@/components/Client/Search.vue";
+import Search from "@/components/Client/App/Search.vue";
 import ListHotel from "@/components/Client/HomePage/ListHotel.vue";
 import TrendingLocations from "@/components/Client/HomePage/TrendingLocations.vue";
 import CarouselLocations from "@/components/Client/HomePage/CarouselLocations.vue";

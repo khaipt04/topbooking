@@ -19,6 +19,7 @@ import {
   BuildingOffice2Icon,
   UserCircleIcon,
   XMarkIcon,
+  WalletIcon
 } from '@heroicons/vue/24/outline';
 
 //state
@@ -105,7 +106,7 @@ const isActive = (path) => route.path === path
             </PopoverGroup>
 
             <Menu as="div" class="relative inline-block text-left ml-auto">
-              <div v-if="true" class="flex items-center">
+              <div v-if="false" class="flex items-center">
                 <router-link to="/auth/login" class="block sm:hidden lg:hidden">
                   <UserCircleIcon class="h-10 w-10 text-white" />
                 </router-link>
@@ -114,7 +115,7 @@ const isActive = (path) => route.path === path
                 <router-link to="/auth/register" class="text-white bg-blue-500 hover:bg-blue-600 font-medium rounded-lg text-sm px-5 py-2.5 transition-all cursor-pointer hidden sm:block lg:block ml-2">Đăng kí</router-link>
               </div>
 
-              <div v-if="false">
+              <div v-if="true">
                 <MenuButton class="w-full hover:bg-[rgba(255,255,255,0.2)] p-2 rounded-md flex items-center justify-between transition-all cursor-pointer">
                   <img class="rounded-full border border-yellow-400" src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/1f/1f923ac2381b0d8af9fadf5f51bb9e072044de94.jpg" alt="" srcset="">
                   <div class="text-left ml-2">
@@ -128,7 +129,7 @@ const isActive = (path) => route.path === path
                 <MenuItems class="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white ring-1 shadow-lg ring-black/5 focus:outline-hidden">
                   <div class="py-1">
                     <MenuItem v-slot="{ active }">
-                      <RouterLink to="" :class="[active ? 'bg-gray-100 text-gray-900 outline-hidden' : 'text-gray-700',
+                      <RouterLink to="/myaccount" :class="[active ? 'bg-gray-100 text-gray-900 outline-hidden' : 'text-gray-700',
                       'px-4 py-2 text-sm flex items-center gap-2']">
                         <UserCircleIcon class="h-6 w-6 text-gray-500" />
                         Tài khoản
@@ -144,7 +145,7 @@ const isActive = (path) => route.path === path
                     <MenuItem v-slot="{ active }">
                       <RouterLink to="" :class="[active ? 'bg-gray-100 text-gray-900 outline-hidden' : 'text-gray-700',
                       'px-4 py-2 text-sm flex items-center gap-2']">
-                        <Bars3Icon class="h-6 w-6 text-gray-500" />
+                        <WalletIcon class="h-6 w-6 text-gray-500" />
                         Phòng đã đặt
                       </RouterLink>
                     </MenuItem>

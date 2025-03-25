@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import ImagesHotel from "@/components/Client/HotelPage/ImagesHotel.vue";
 import UtilitiesHotel from "@/components/Client/HotelPage/UtilitiesHotel.vue";
-import {useScrollStore} from "@/stores/extensions.js";
+import {useScrollStore} from "@/stores/useAppStore.js";
 
 //state
 const images = ref([

@@ -5,6 +5,7 @@ import moment from "moment";
 import {useRoute} from "vue-router";
 import {vietnameseLang} from "@/constants/i18n.js";
 import {locations} from "@/constants/locations.js";
+import unorm from 'unorm';
 import {
   MinusIcon,
   PlusIcon
@@ -65,7 +66,8 @@ const selectLocation = (location) => {
 }
 const filteredLocations = computed(() => {
   return locations.filter((location) =>
-      location.toLowerCase().includes(searchData.value.location.toLowerCase())
+      unorm.nfd(location).replace(/[\u0300-\u036f]/g, '').toLowerCase()
+          .includes(unorm.nfd(searchData.value.location).replace(/[\u0300-\u036f]/g, '').toLowerCase())
   ).slice(0, 5)
 })
 
@@ -109,7 +111,7 @@ const isTrue = (path) => route.path === path
         ]"
     >
       <div class="bg-yellow-400 p-3 rounded-xl shadow shadow-amber-300">
-        <form class="block sm:block lg:flex gap-2 justify-between items-center">
+        <form @submit.prevent class="block sm:block lg:flex gap-2 justify-between items-center">
           <div class="relative w-full mb-2 sm:mb-2 lg:mb-0 mt-2 sm:mt-2 lg:mt-0">
             <input
                 v-model="searchData.location"
@@ -122,7 +124,7 @@ const isTrue = (path) => route.path === path
                 @blur="hideDropdownLocations"
             />
 
-            <ul v-if="showDropdownLocations" class="absolute w-full bg-white border border-gray-300 rounded-lg shadow-md mt-1">
+            <ul v-if="showDropdownLocations" class="absolute w-full z-50 bg-white border border-gray-300 rounded-lg shadow-md mt-1">
               <li
                   v-for="(location, index) in filteredLocations"
                   :key="index"
@@ -147,7 +149,7 @@ const isTrue = (path) => route.path === path
               {{ searchData.adult }} người lớn - {{ searchData.children }} trẻ em
             </div>
 
-            <div v-if="showDropdownPeople" class="absolute w-full bg-white border border-gray-300 rounded-lg shadow-md mt-1 px-3 py-4">
+            <div v-if="showDropdownPeople" class="absolute w-full z-50 bg-white border border-gray-300 rounded-lg shadow-md mt-1 px-3 py-4">
               <div class="flex justify-between items-center">
                 <span>Người lớn:</span>
                 <div class="flex justify-between items-center w-1/2 p-2 border border-gray-500 rounded-lg">

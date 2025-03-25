@@ -6,6 +6,7 @@ import LoginPage from "@/views/Client/Auth/LoginPage.vue";
 import RegisterPage from "@/views/Client/Auth/RegisterPage.vue";
 import HotelPage from "@/views/Client/HotelPage.vue";
 import HotelsFiltersPage from "@/views/Client/HotelsFiltersPage.vue";
+import MyAccountPage from "@/views/Client/MyAccountPage.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -41,6 +42,10 @@ const router = createRouter({
           meta: { title: 'TopBooking - Đăng kí' }
         }
       ]
+    },
+    {
+      path: '/myaccount',
+      component: MyAccountPage,
     },
     {
       path: '/hotel/slug',

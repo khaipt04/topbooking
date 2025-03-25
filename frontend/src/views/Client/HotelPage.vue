@@ -2,7 +2,7 @@
 import {ref, watch} from "vue";
 import HotelOverview from "@/components/Client/HotelPage/HotelOverview.vue";
 import ListRoom from "@/components/Client/HotelPage/ListRoom.vue";
-import {useScrollStore} from "@/stores/extensions.js";
+import {useScrollStore} from "@/stores/useAppStore.js";
 
 const scroll = useScrollStore()
 const targetSection = ref(null)
