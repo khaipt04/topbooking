@@ -7,6 +7,16 @@ import RegisterPage from "@/views/Client/Auth/RegisterPage.vue";
 import HotelPage from "@/views/Client/HotelPage.vue";
 import HotelsFiltersPage from "@/views/Client/HotelsFiltersPage.vue";
 import MyAccountPage from "@/views/Client/MyAccountPage.vue";
+import Error404 from "@/views/Client/Error404.vue";
+import RoomsBookedPage from "@/views/Client/RoomsBookedPage.vue";
+import HotelManagementLayout from "@/views/Client/Partner/HotelManagementLayout.vue";
+import Info from "@/views/Client/Partner/Info.vue";
+import RoomsManagement from "@/views/Client/Partner/RoomsManagement.vue";
+import BookingManagement from "@/views/Client/Partner/BookingManagement.vue";
+import Notification from "@/views/Client/Partner/Notification.vue";
+import Dashboard from "@/views/Client/Partner/Dashboard.vue";
+import Feedback from "@/views/Client/Partner/Feedback.vue";
+import Setting from "@/views/Client/Partner/Setting.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -54,14 +64,64 @@ const router = createRouter({
     {
       path: '/hotels/filters',
       component: HotelsFiltersPage,
+    },
+    {
+      path: '/roomsbooked',
+      component: RoomsBookedPage,
+    },
+    {
+      path: '/hotel-management',
+      component: HotelManagementLayout,
+      redirect: '/hotel-management/info',
+      children: [
+        {
+          path: 'info',
+          component: Info,
+          meta: { title: 'Quản lí chỗ nghỉ - Thông tin cơ bản' }
+        },
+        {
+          path: 'rooms',
+          component: RoomsManagement,
+          meta: { title: 'Quản lí chỗ nghỉ - Quản lí phòng' }
+        },
+        {
+          path: 'booking',
+          component: BookingManagement,
+          meta: { title: 'Quản lí chỗ nghỉ - Quản lí đặt phòng' }
+        },
+        {
+          path: 'notification',
+          component: Notification,
+          meta: { title: 'Quản lí chỗ nghỉ - Thông báo' }
+        },
+        {
+          path: 'dashboard',
+          component: Dashboard,
+          meta: { title: 'Quản lí chỗ nghỉ - Thống kê' }
+        },
+        {
+          path: 'feedback',
+          component: Feedback,
+          meta: { title: 'Quản lí chỗ nghỉ - Đánh giá' }
+        },
+        {
+          path: 'setting',
+          component: Setting,
+          meta: { title: 'Quản lí chỗ nghỉ - Cài đặt' }
+        }
+      ]
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      component: Error404,
     }
   ]
 })
 
 router.beforeEach((to, from, next) => {
   if (to.meta.title) {
-    document.title = to.meta.title;
+    document.title = to.meta.title
   }
-  next();
-});
+  next()
+})
 export default router

@@ -17,19 +17,19 @@ import {
 //state
 const openChangeImage = useOpenChangeImageStore()
 const openInfo = useOpenInfoStore()
-let imagePreview = ref(null);
+let imagePreview = ref(null)
 
 //action
 const handleFileUpload = (event) => {
-  const file = event.target.files[0];
+  const file = event.target.files[0]
   if (file) {
-    const reader = new FileReader();
+    const reader = new FileReader()
     reader.onload = (e) => {
-      imagePreview.value = e.target.result;
-    };
-    reader.readAsDataURL(file);
+      imagePreview.value = e.target.result
+    }
+    reader.readAsDataURL(file)
   }
-};
+}
 </script>
 
 <template>
@@ -52,7 +52,8 @@ const handleFileUpload = (event) => {
                   <img
                       class="w-50 h-50 rounded-full"
                       :src="imagePreview ? imagePreview : '/images/hotel_images/621776883.webp'"
-                      alt="avatar">
+                      alt="avatar"
+                  >
                 </div>
                 <form>
                   <div class="text-center mt-3">
@@ -60,8 +61,12 @@ const handleFileUpload = (event) => {
                     <input type="file" @change="handleFileUpload" id="image_upload" hidden>
                   </div>
                   <div class="text-center mt-3">
-                    <input type="submit" class="btn rounded-lg bg-green-700 text-white" value="Lưu">
-                    <button @click="openChangeImage.close(); openInfo.open()" type="button" class="btn rounded-lg bg-red-700 text-white">Đóng</button>
+                    <input
+                        :type="imagePreview ? 'submit' : 'button'"
+                        :disabled="!imagePreview"
+                        class="btn rounded-lg bg-green-700 text-white"
+                        value="Lưu"
+                    >
                   </div>
                 </form>
               </div>

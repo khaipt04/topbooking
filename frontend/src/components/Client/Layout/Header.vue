@@ -118,7 +118,7 @@ const isActive = (path) => route.path === path
               <div v-if="true">
                 <MenuButton class="w-full hover:bg-[rgba(255,255,255,0.2)] p-2 rounded-md flex items-center justify-between transition-all cursor-pointer">
                   <img class="rounded-full border border-yellow-400" src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/1f/1f923ac2381b0d8af9fadf5f51bb9e072044de94.jpg" alt="" srcset="">
-                  <div class="text-left ml-2">
+                  <div class="hidden sm:block lg:block text-left ml-2">
                     <h5 class="font-medium text-white">Phan Thanh Khai</h5>
                     <p class="text-xs text-yellow-500">Khách hàng</p>
                   </div>
