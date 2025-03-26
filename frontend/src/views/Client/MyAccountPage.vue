@@ -45,13 +45,15 @@ const openInfo = useOpenInfoStore()
       <div class="bg-white border border-gray-300 rounded-md p-3 shadow-xl shadow-gray-200">
         <h3 class="font-medium text-lg">Chỗ nghỉ</h3>
         <div class="mt-3">
-          <div class="hover:bg-gray-200 p-2 my-1 rounded transition-all cursor-pointer flex justify-between items-center">
-            <div class="flex">
-              <WalletIcon class="h-6 w-6 text-gray-500 mr-2" />
-              Phòng đã đặt
+          <router-link to="/roomsbooked">
+            <div class="hover:bg-gray-200 p-2 my-1 rounded transition-all cursor-pointer flex justify-between items-center">
+              <div class="flex">
+                <WalletIcon class="h-6 w-6 text-gray-500 mr-2" />
+                Phòng đã đặt
+              </div>
+              <ChevronRightIcon class="h-6 w-6 text-gray-500" />
             </div>
-            <ChevronRightIcon class="h-6 w-6 text-gray-500" />
-          </div>
+          </router-link>
 
           <div class="hover:bg-gray-200 p-2 my-1 rounded transition-all cursor-pointer flex justify-between items-center">
             <div class="flex">
