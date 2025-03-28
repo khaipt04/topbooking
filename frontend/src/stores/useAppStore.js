@@ -42,3 +42,31 @@ export const useOpenChangeImageStore = defineStore('openChangeImage', () => {
 
     return { openChangeImage, open, close }
 })
+
+export const useOpenChangeImageHotelStore = defineStore('openChangeImageHotel', () => {
+    let openChangeImageHotel = ref(false)
+
+    const open = () => {
+        openChangeImageHotel.value = true
+    }
+
+    const close = () => {
+        openChangeImageHotel.value = false
+    }
+
+    return { openChangeImageHotel, open, close }
+})
+
+export const useOpenChangeUtilitiesHotel = defineStore('openChangeUtilitiesHotel', () => {
+    let openChangeUtilitiesHotel = ref(false)
+
+    const open = () => {
+        openChangeUtilitiesHotel.value = true
+    }
+
+    const close = () => {
+        openChangeUtilitiesHotel.value = false
+    }
+
+    return { openChangeUtilitiesHotel, open, close }
+})
