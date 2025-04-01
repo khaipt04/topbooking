@@ -11,7 +11,6 @@ import {
   StarIcon,
   CameraIcon
 } from "@heroicons/vue/24/outline/index.js";
-import {utilities} from "daisyui/imports.js";
 
 //state
 let initialHotel = ref({
@@ -233,7 +232,7 @@ const isChanged = computed(() => {
       </div>
 
       <div v-show="isChanged" class="text-end">
-        <input type="submit" class="btn bg-green-600 text-white mt-3" value="Lưu các thay đổi">
+        <input type="submit" class="btn btn-primary mt-3" value="Lưu các thay đổi">
       </div>
     </form>
   </div>

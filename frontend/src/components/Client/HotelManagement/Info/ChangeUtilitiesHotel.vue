@@ -1,5 +1,5 @@
 <script setup>
-import {defineProps, ref} from "vue";
+import {ref} from "vue";
 import {
   useOpenChangeUtilitiesHotel
 } from "@/stores/useAppStore.js";
@@ -42,8 +42,6 @@ const toggleUtility = (id) => {
   } else {
     selectedUtilities.value.push(id)
   }
-  console.log(selectedUtilities.value)
-  console.log(hotelUtilities.value)
 }
 </script>
 

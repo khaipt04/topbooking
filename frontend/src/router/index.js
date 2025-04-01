@@ -11,8 +11,10 @@ import Error404 from "@/views/Client/Error404.vue";
 import RoomsBookedPage from "@/views/Client/RoomsBookedPage.vue";
 import HotelManagementLayout from "@/views/Client/Partner/HotelManagementLayout.vue";
 import Info from "@/views/Client/Partner/Info.vue";
-import RoomsManagement from "@/views/Client/Partner/RoomsManagement.vue";
-import BookingManagement from "@/views/Client/Partner/BookingManagement.vue";
+import Rooms from "@/views/Client/Partner/Room/Rooms.vue";
+import Add from "@/views/Client/Partner/Room/Add.vue";
+import Customize from "@/views/Client/Partner/Room/Customize.vue";
+import Booking from "@/views/Client/Partner/Booking.vue";
 import Notification from "@/views/Client/Partner/Notification.vue";
 import Dashboard from "@/views/Client/Partner/Dashboard.vue";
 import Feedback from "@/views/Client/Partner/Feedback.vue";
@@ -81,12 +83,22 @@ const router = createRouter({
         },
         {
           path: 'rooms',
-          component: RoomsManagement,
+          component: Rooms,
           meta: { title: 'Quản lí chỗ nghỉ - Quản lí phòng' }
         },
         {
+          path: 'room/add',
+          component: Add,
+          meta: { title: 'Quản lí chỗ nghỉ - Thêm phòng' }
+        },
+        {
+          path: 'room/customize',
+          component: Customize,
+          meta: { title: 'Quản lí chỗ nghỉ - Tùy chỉnh phòng' }
+        },
+        {
           path: 'booking',
-          component: BookingManagement,
+          component: Booking,
           meta: { title: 'Quản lí chỗ nghỉ - Quản lí đặt phòng' }
         },
         {
