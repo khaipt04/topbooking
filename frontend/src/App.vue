@@ -1,20 +1,16 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import Header from "@/components/Client/Layout/Header.vue";
-import Footer from "@/components/Client/Layout/Footer.vue";
+import { computed } from "vue";
+import { useRoute } from "vue-router";
+import DefaultLayout from "@/views/layouts/DefaultLayout.vue";
+import AdminLayout from "@/views/layouts/AdminLayout.vue";
 
+const route = useRoute();
+
+const layout = computed(() => (route.path.startsWith("/admin") ? AdminLayout : DefaultLayout));
 </script>
 
 <template>
-  <div class="flex flex-col min-h-screen">
-    <Header/>
-
-    <main class="flex-1">
-      <RouterView/>
-    </main>
-
-    <Footer/>
-  </div>
+  <component :is="layout"/>
 </template>
 
 <style scoped></style>

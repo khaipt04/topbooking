@@ -1,41 +1,42 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomePage from '@/views/Client/HomePage.vue';
-import RegisterPartnerPage from "@/views/Client/RegisterPartnerPage.vue";
-import AuthLayout from "@/views/Client/Auth/AuthLayout.vue";
-import LoginPage from "@/views/Client/Auth/LoginPage.vue";
-import RegisterPage from "@/views/Client/Auth/RegisterPage.vue";
-import HotelPage from "@/views/Client/HotelPage.vue";
-import HotelsFiltersPage from "@/views/Client/HotelsFiltersPage.vue";
-import MyAccountPage from "@/views/Client/MyAccountPage.vue";
-import Error404 from "@/views/Client/Error404.vue";
-import RoomsBookedPage from "@/views/Client/RoomsBookedPage.vue";
-import HotelManagementLayout from "@/views/Client/Partner/HotelManagementLayout.vue";
-import Info from "@/views/Client/Partner/Info.vue";
-import Rooms from "@/views/Client/Partner/Room/Rooms.vue";
-import Add from "@/views/Client/Partner/Room/Add.vue";
-import Customize from "@/views/Client/Partner/Room/Customize.vue";
-import Booking from "@/views/Client/Partner/Booking.vue";
-import Notification from "@/views/Client/Partner/Notification.vue";
-import Dashboard from "@/views/Client/Partner/Dashboard.vue";
-import Feedback from "@/views/Client/Partner/Feedback.vue";
-import Setting from "@/views/Client/Partner/Setting.vue";
+
+import Home from '@/views/client/Home.vue';
+import RegisterPartner from "@/views/client/RegisterPartner.vue";
+import AuthLayout from "@/views/client/auth/AuthLayout.vue";
+import Login from "@/views/client/auth/Login.vue";
+import Register from "@/views/client/auth/Register.vue";
+import Hotel from "@/views/client/Hotel.vue";
+import HotelsFilters from "@/views/client/HotelsFilters.vue";
+import MyAccount from "@/views/client/MyAccount.vue";
+import Error404 from "@/views/client/Error404.vue";
+import RoomsBooked from "@/views/client/RoomsBooked.vue";
+import HotelMgmtLayout from "@/views/partner/HotelMgmtLayout.vue";
+import Info from "@/views/partner/Info.vue";
+import ViewRoomList from "@/views/partner/room/ViewRoomList.vue";
+import AddRoom from "@/views/partner/room/AddRoom.vue";
+import CustomizeRoom from "@/views/partner/room/CustomizeRoom.vue";
+import Booking from "@/views/partner/Booking.vue";
+import Notification from "@/views/partner/Notification.vue";
+import Dashboard from "@/views/partner/Dashboard.vue";
+import Feedback from "@/views/partner/Feedback.vue";
+import Setting from "@/views/partner/Setting.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      component: HomePage,
+      component: Home,
       meta: { title: 'TopBooking - Tìm chỗ nghỉ' }
     },
     {
       path: '/home',
       redirect: '/',
-      component: HomePage,
+      component: Home,
     },
     {
       path: '/register-partner-hotel',
-      component: RegisterPartnerPage,
+      component: RegisterPartner,
       meta: { title: 'TopBooking - Đăng kí đối tác' }
     },
     {
@@ -45,35 +46,35 @@ const router = createRouter({
       children: [
         {
           path: 'login',
-          component: LoginPage,
+          component: Login,
           meta: { title: 'TopBooking - Đăng nhập' }
         },
         {
           path: 'register',
-          component: RegisterPage,
+          component: Register,
           meta: { title: 'TopBooking - Đăng kí' }
         }
       ]
     },
     {
       path: '/myaccount',
-      component: MyAccountPage,
+      component: MyAccount,
     },
     {
       path: '/hotel/slug',
-      component: HotelPage,
+      component: Hotel,
     },
     {
       path: '/hotels/filters',
-      component: HotelsFiltersPage,
+      component: HotelsFilters,
     },
     {
       path: '/roomsbooked',
-      component: RoomsBookedPage,
+      component: RoomsBooked,
     },
     {
       path: '/hotel-management',
-      component: HotelManagementLayout,
+      component: HotelMgmtLayout,
       redirect: '/hotel-management/info',
       children: [
         {
@@ -83,17 +84,17 @@ const router = createRouter({
         },
         {
           path: 'rooms',
-          component: Rooms,
+          component: ViewRoomList,
           meta: { title: 'Quản lí chỗ nghỉ - Quản lí phòng' }
         },
         {
           path: 'room/add',
-          component: Add,
+          component: AddRoom,
           meta: { title: 'Quản lí chỗ nghỉ - Thêm phòng' }
         },
         {
           path: 'room/customize',
-          component: Customize,
+          component: CustomizeRoom,
           meta: { title: 'Quản lí chỗ nghỉ - Tùy chỉnh phòng' }
         },
         {
