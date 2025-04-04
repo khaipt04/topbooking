@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
+//client
 import Home from '@/views/client/Home.vue';
 import RegisterPartner from "@/views/client/RegisterPartner.vue";
 import AuthLayout from "@/views/client/auth/AuthLayout.vue";
@@ -10,6 +11,8 @@ import HotelsFilters from "@/views/client/HotelsFilters.vue";
 import MyAccount from "@/views/client/MyAccount.vue";
 import Error404 from "@/views/client/Error404.vue";
 import RoomsBooked from "@/views/client/RoomsBooked.vue";
+
+//partner
 import HotelMgmtLayout from "@/views/partner/HotelMgmtLayout.vue";
 import Info from "@/views/partner/Info.vue";
 import ViewRoomList from "@/views/partner/room/ViewRoomList.vue";
@@ -20,6 +23,9 @@ import Notification from "@/views/partner/Notification.vue";
 import Dashboard from "@/views/partner/Dashboard.vue";
 import Feedback from "@/views/partner/Feedback.vue";
 import Setting from "@/views/partner/Setting.vue";
+
+//admin
+import AdminDashboard from "@/views/administration/AdminDashboard.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -121,6 +127,17 @@ const router = createRouter({
           path: 'setting',
           component: Setting,
           meta: { title: 'Quản lí chỗ nghỉ - Cài đặt' }
+        }
+      ]
+    },
+    {
+      path: '/administration',
+      redirect: '/administration/dashboard',
+      children: [
+        {
+          path: 'dashboard',
+          component: AdminDashboard,
+          meta: { title: 'Admin - Tổng quan' }
         }
       ]
     },
