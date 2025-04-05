@@ -1,5 +1,5 @@
 <script setup>
-import AddRoomForm from "@/components/partner/forms/AddRoomForm.vue";
+import AddRoomForm from "@/components/partner/room/AddRoomForm.vue";
 </script>
 
 <template>

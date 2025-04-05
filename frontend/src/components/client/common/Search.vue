@@ -1,6 +1,6 @@
 <script setup>
 import {useRoute} from "vue-router";
-import SearchForm from "@/components/client/forms/SearchForm.vue";
+import SearchForm from "@/components/client/common/SearchForm.vue";
 
 const route = useRoute()
 

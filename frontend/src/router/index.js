@@ -26,6 +26,8 @@ import Setting from "@/views/partner/Setting.vue";
 
 //admin
 import AdminDashboard from "@/views/administration/AdminDashboard.vue";
+import AdminHotelUtilities from "@/views/administration/AdminHotelUtilities.vue";
+import AdminHotelCategories from "@/views/administration/AdminHotelCategories.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -137,7 +139,17 @@ const router = createRouter({
         {
           path: 'dashboard',
           component: AdminDashboard,
-          meta: { title: 'Admin - Tổng quan' }
+          meta: { title: 'Tổng quan' }
+        },
+        {
+          path: 'hotel/utilities',
+          component: AdminHotelUtilities,
+          meta: { title: 'Chỗ nghỉ - Tiện nghi' }
+        },
+        {
+          path: 'hotel/categories',
+          component: AdminHotelCategories,
+          meta: { title: 'Chỗ nghỉ - Loại chỗ nghỉ' }
         }
       ]
     },

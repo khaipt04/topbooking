@@ -5,7 +5,7 @@ import {
   MenuItems,
   MenuItem
 } from '@headlessui/vue';
-import {ArrowLeftCircleIcon, BuildingOffice2Icon, UserCircleIcon, WalletIcon} from "@heroicons/vue/24/outline/index.js";
+import {ArrowLeftCircleIcon} from "@heroicons/vue/24/outline/index.js";
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <script setup>
 import Banner from "@/components/client/registerpartner/Banner.vue";
-import RegisterPartnerForm from "@/components/client/forms/RegisterPartnerForm.vue";
+import RegisterPartnerForm from "@/components/client/registerpartner/RegisterPartnerForm.vue";
 </script>
 
 <template>

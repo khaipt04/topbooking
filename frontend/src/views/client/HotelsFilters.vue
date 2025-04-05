@@ -1,7 +1,7 @@
 <script setup>
 import Search from "@/components/client/common/Search.vue";
 import HotelList from "@/components/client/hotelsfilters/HotelList.vue";
-import FilterForm from "@/components/client/forms/FilterForm.vue";
+import FilterForm from "@/components/client/hotelsfilters/FilterForm.vue";
 </script>
 
 <template>

@@ -1,5 +1,5 @@
 <script setup>
-import {ref, defineProps, computed} from 'vue'
+import {ref, computed} from 'vue'
 import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue'
 
 //state
