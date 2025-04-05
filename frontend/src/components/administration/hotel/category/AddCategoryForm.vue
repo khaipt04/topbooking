@@ -1,5 +1,19 @@
 <script setup>
+import {ref} from "vue";
 
+let category = ref({
+  name: "",
+  image: ""
+})
+let imageUpload = ref(null)
+
+const handleFileUpload = (event) => {
+  const file = event.target.files[0]
+  if (file) {
+    category.value.image = file.name
+    imageUpload.value = file
+  }
+}
 </script>
 
 <template>
@@ -12,8 +26,11 @@
         </div>
         <div>
           <label for="category_image" class="block mb-2">Hình ảnh</label>
-          <label for="category_image" class="btn">Tải lên hình ảnh</label>
-          <input id="category_image" type="file" class="sr-only">
+          <div class="flex gap-2 items-center">
+            <label for="category_image" class="btn">Tải lên hình ảnh</label>
+            <input @change="handleFileUpload" id="category_image" type="file" class="sr-only">
+            <p v-show="category.image !== ''">{{ category.image }}</p>
+          </div>
         </div>
       </div>
       <div class="flex items-end">
