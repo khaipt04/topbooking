@@ -10,9 +10,6 @@ const props = defineProps({
 <template>
   <tr class="hover:bg-base-300">
     <th>{{ props.index }}</th>
-    <td>
-      <img :src="props.category.image" :alt="props.category.name" class="w-full bg-cover rounded">
-    </td>
     <td>{{ props.category.name }}</td>
     <td>
       <div class="flex gap-2 items-center">

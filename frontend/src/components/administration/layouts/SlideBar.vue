@@ -41,10 +41,10 @@ let dropDownPartner = ref(false)
           </button>
           <ul v-show="dropDownRoom" class="py-2 space-y-2">
             <li >
-              <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Tiện nghi</a>
+              <router-link to="/administration/room/utilities" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Tiện nghi</router-link>
             </li>
             <li >
-              <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Loại phòng</a>
+              <router-link to="/administration/room/categories" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Loại phòng</router-link>
             </li>
           </ul>
         </li>

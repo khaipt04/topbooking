@@ -28,6 +28,8 @@ import Setting from "@/views/partner/Setting.vue";
 import AdminDashboard from "@/views/administration/AdminDashboard.vue";
 import AdminHotelUtilities from "@/views/administration/AdminHotelUtilities.vue";
 import AdminHotelCategories from "@/views/administration/AdminHotelCategories.vue";
+import AdminRoomUtilities from "@/views/administration/AdminRoomUtilities.vue";
+import AdminRoomCategories from "@/views/administration/AdminRoomCategories.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -150,6 +152,16 @@ const router = createRouter({
           path: 'hotel/categories',
           component: AdminHotelCategories,
           meta: { title: 'Chỗ nghỉ - Loại chỗ nghỉ' }
+        },
+        {
+          path: 'room/utilities',
+          component: AdminRoomUtilities,
+          meta: { title: 'Phòng - Tiện nghi' }
+        },
+        {
+          path: 'room/categories',
+          component: AdminRoomCategories,
+          meta: { title: 'Phòng - Loại chỗ nghỉ' }
         }
       ]
     },
