@@ -1,19 +1,12 @@
 <script setup>
-import {ref, computed} from 'vue'
-import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue'
+import {computed, ref} from "vue";
+import {Dialog, DialogPanel, TransitionChild, TransitionRoot} from "@headlessui/vue";
 
 //state
-const props = defineProps({
-    modelValue: Boolean,
-    images: Object
-})
-
-const images = ref(props.images)
+const totalSlides = computed(() => images.value.length)
 const currentIndex = ref(0)
 
 //action
-const totalSlides = computed(() => images.value.length)
-
 const nextSlide = () => {
   if (currentIndex.value < totalSlides.value - 1) {
     currentIndex.value++
@@ -27,8 +20,8 @@ const prevSlide = () => {
 </script>
 
 <template>
-  <TransitionRoot as="template" :show="props.modelValue">
-    <Dialog class="relative z-10" @close="$emit('update:modelValue', false)">
+  <TransitionRoot as="template" :show="false">
+    <Dialog class="relative z-10" @close="">
       <TransitionChild as="template" enter="ease-out duration-300" enter-from="opacity-0" enter-to="opacity-100" leave="ease-in duration-200" leave-from="opacity-100" leave-to="opacity-0">
         <div class="fixed inset-0 bg-gray-500/75 transition-opacity" />
       </TransitionChild>
@@ -40,7 +33,7 @@ const prevSlide = () => {
               <div class="relative w-full mx-auto my-auto">
                 <div class="overflow-hidden rounded-lg">
                   <div class="flex transition-transform duration-500" :style="{ transform: `translateX(-${currentIndex * 100}%)` }">
-                    <div v-for="image in images" :key="image.id" class="flex-shrink-0 w-full">
+                    <div v-for="(image, index) in images" :key="image.id" class="flex-shrink-0 w-full">
                       <img :src="image.url" alt="image.url" class="h-full rounded-lg shadow-lg mx-auto" />
                     </div>
                   </div>

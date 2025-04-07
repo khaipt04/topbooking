@@ -77,7 +77,7 @@ const router = createRouter({
       component: HotelsFilters,
     },
     {
-      path: '/roomsbooked',
+      path: '/roombooked',
       component: RoomsBooked,
     },
     {

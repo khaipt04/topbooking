@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from "vue";
 import ImagesHotel from "@/components/client/hotel/ImagesHotel.vue";
-import {useScrollStore} from "@/stores/useAppStore.js";
 
 //state
 const images = ref([
@@ -38,17 +37,32 @@ const images = ref([
     url: "https://flowbite.s3.amazonaws.com/docs/gallery/featured/image.jpg"
   }
 ])
-const scroll = useScrollStore()
+
 let seeMore = ref(false)
+let isOpenImageModal = ref(false)
+
+const countImage = images.value.length - 6
 
 //action
-const scrollToTarget = () => {
-  scroll.triggerScroll()
-}
+
 </script>
 
 <template>
-  <ImagesHotel :images = "images"/>
+  <div class="grid gap-4">
+    <div @click="isOpenImageModal = true" class="cursor-pointer">
+      <img class="h-auto max-w-full rounded-lg" :src="images[0].url" :alt="images[0].url">
+    </div>
+    <div @click="isOpenImageModal = true" class="grid grid-cols-5 gap-4">
+      <div v-for="(image, index) in images.slice(1, 6)" :key="image.id" class="relative cursor-pointer">
+        <img class="h-auto max-w-full rounded-lg" :src="image.url" :alt="image.url">
+        <div v-if="index === images.slice(1, 6).length - 1" class="bg-[rgba(0,0,0,0.4)] absolute top-0 w-full h-full rounded-lg flex justify-center items-center">
+          <span class="text-white font-bold">+ {{ countImage }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ImagesHotel v-model="isOpenImageModal" :images = "images"/>
 
   <div class="mt-5 sm:mt-10 lg:mt-10 border-b border-b-gray-400 pb-5">
     <div class="block sm:flex lg:flex justify-between">
@@ -66,9 +80,7 @@ const scrollToTarget = () => {
         <p>Giá phòng từ:</p>
         <span class="text-2xl text-orange-500 font-bold">800.000 VNĐ </span><span>/ đêm</span>
         <div>
-          <button @click="scrollToTarget"
-                  class="btn bg-orange-500 text-white font-medium rounded-md w-full mt-3"
-          >
+          <button class="btn bg-orange-500 text-white font-medium rounded-md w-full mt-3">
             LỰA CHỌN PHÒNG
           </button>
         </div>

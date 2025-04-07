@@ -1,5 +1,5 @@
 <script setup>
-import HotelListItems from "@/components/client/hotelsfilters/HotelListItems.vue";
+import HotelListItems from "@/components/client/hotelbyfilter/HotelListItems.vue";
 import { StarIcon } from '@heroicons/vue/24/outline';
 </script>
 

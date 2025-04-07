@@ -1,6 +1,7 @@
 <script setup>
+import {ref} from "vue";
 import MyInfo from "@/components/client/myaccount/MyInfo.vue";
-import {useOpenInfoStore} from "@/stores/useAppStore.js";
+import ChangeAvatar from "@/components/client/myaccount/ChangeAvatar.vue";
 import {
   UserIcon,
   ChevronRightIcon,
@@ -11,8 +12,8 @@ import {
   BuildingOffice2Icon
 } from '@heroicons/vue/24/outline';
 
-const openInfo = useOpenInfoStore()
-
+let isModalInfoOpen = ref(false)
+let isModalChangeAvatarOpen = ref(false)
 </script>
 
 <template>
@@ -29,7 +30,7 @@ const openInfo = useOpenInfoStore()
       <div class="bg-white border border-gray-300 rounded-md p-3 shadow-xl shadow-gray-200">
         <h3 class="font-medium text-lg">Quản lí tài khoản</h3>
         <div class="mt-3">
-          <div @click="openInfo.open()" class="hover:bg-gray-200 p-2 my-1 rounded transition-all cursor-pointer flex justify-between items-center">
+          <div @click="isModalInfoOpen = true" class="hover:bg-gray-200 p-2 my-1 rounded transition-all cursor-pointer flex justify-between items-center">
             <div class="flex">
               <UserIcon class="h-6 w-6 text-gray-500 mr-2" />
               Thông tin cá nhân
@@ -97,7 +98,8 @@ const openInfo = useOpenInfoStore()
       </div>
     </div>
 
-    <MyInfo/>
+    <MyInfo v-model="isModalInfoOpen" @open="isModalChangeAvatarOpen = true; isModalInfoOpen = false"/>
+    <ChangeAvatar v-model="isModalChangeAvatarOpen" @open="isModalInfoOpen = true"/>
   </div>
 </template>
 
