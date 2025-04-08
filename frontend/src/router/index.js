@@ -46,7 +46,7 @@ const router = createRouter({
       component: Home,
     },
     {
-      path: '/register-adminpartner-hotel',
+      path: '/register-partner-hotel',
       component: RegisterPartner,
       meta: { title: 'TopBooking - Đăng kí đối tác' }
     },
