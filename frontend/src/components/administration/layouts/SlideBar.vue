@@ -57,7 +57,7 @@ let dropDownPartner = ref(false)
           </button>
           <ul v-show="dropDownPartner" class="py-2 space-y-2">
             <li >
-              <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Đơn đăng kí</a>
+              <router-link to="/administration/partner/registrations" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Đơn đăng kí</router-link>
             </li>
             <li >
               <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Chỗ nghỉ</a>

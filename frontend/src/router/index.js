@@ -12,7 +12,7 @@ import MyAccount from "@/views/client/MyAccount.vue";
 import Error404 from "@/views/client/Error404.vue";
 import RoomsBooked from "@/views/client/RoomsBooked.vue";
 
-//partner
+//adminpartner
 import HotelMgmtLayout from "@/views/partner/HotelMgmtLayout.vue";
 import Info from "@/views/partner/Info.vue";
 import ViewRoomList from "@/views/partner/room/ViewRoomList.vue";
@@ -30,6 +30,7 @@ import AdminHotelUtilities from "@/views/administration/AdminHotelUtilities.vue"
 import AdminHotelCategories from "@/views/administration/AdminHotelCategories.vue";
 import AdminRoomUtilities from "@/views/administration/AdminRoomUtilities.vue";
 import AdminRoomCategories from "@/views/administration/AdminRoomCategories.vue";
+import Registration from "@/views/administration/adminpartner/Registration.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -45,7 +46,7 @@ const router = createRouter({
       component: Home,
     },
     {
-      path: '/register-partner-hotel',
+      path: '/register-adminpartner-hotel',
       component: RegisterPartner,
       meta: { title: 'TopBooking - Đăng kí đối tác' }
     },
@@ -162,6 +163,11 @@ const router = createRouter({
           path: 'room/categories',
           component: AdminRoomCategories,
           meta: { title: 'Phòng - Loại chỗ nghỉ' }
+        },
+        {
+          path: 'partner/registrations',
+          component: Registration,
+          meta: { title: 'Đối tác - Danh sách đăng kí' }
         }
       ]
     },

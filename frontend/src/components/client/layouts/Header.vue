@@ -97,7 +97,7 @@ const isActive = (path) => route.path === path
 
                 <Popover class="flex">
                   <div class="relative flex">
-                    <RouterLink to="/register-partner-hotel" :class="[isActive('/register-partner-hotel') ? 'border-white text-white' : 'border-transparent text-white',
+                    <RouterLink to="/register-partner-hotel" :class="[isActive('/register-adminpartner-hotel') ? 'border-white text-white' : 'border-transparent text-white',
                     'relative z-10 -mb-px flex items-center border-b-2 pt-px text-base font-medium transition-colors' +
                     'duration-200 ease-out outline-none cursor-pointer']">Đăng kí đối tác</RouterLink>
                   </div>
