@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\api\client;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\LoginRequest;
-use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\Login;
+use App\Http\Requests\Register;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
 class AuthController extends Controller
 {
-    public function register(RegisterRequest $request)
+    public function register(Register $request)
     {
         try {
             $user = new User();
@@ -21,7 +21,7 @@ class AuthController extends Controller
                 'success' => true,
                 'data' => $user,
                 'message' => 'Đăng kí tài khoản thành công!'
-            ]);
+            ], 201);
         }catch (\Exception $e){
             return response()->json([
                 'success' => false,
@@ -30,7 +30,7 @@ class AuthController extends Controller
         }
     }
 
-    public function login(LoginRequest $request)
+    public function login(Login $request)
     {
         try {
             $dataLogin = $request->all();
