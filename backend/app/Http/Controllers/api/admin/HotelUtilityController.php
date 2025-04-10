@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreHotelUtility;
 use App\Models\HotelUtility;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,7 @@ class HotelUtilityController extends Controller
         try {
             $utilities = HotelUtility::all();
 
-            if (empty($utilities)) {
+            if ($utilities->isEmpty()) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Danh sách tiện nghi trống.',
@@ -39,9 +40,31 @@ class HotelUtilityController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreHotelUtility $request)
     {
-        //
+        try {
+            $data = $request->all();
+            $initials = collect(explode(' ', $data['name']))->filter()->map(fn($word) => strtoupper($word[0]))->implode('');
+            $code = 'UT' . rand(1000, 9999) . '-' . $initials . '-' . rand(1000, 9999);
+
+            $hotelUtility = new HotelUtility();
+            $hotelUtility->code = $code;
+            $hotelUtility->name = $data['name'];
+            $hotelUtility->icon = $data['icon'];
+
+            $hotelUtility->save();
+
+            return response()->json([
+                'success' => true,
+                'data' => $hotelUtility,
+                'message' => 'Tạo tiện nghi thành công.'
+            ], 201);
+        }catch (\Exception $e){
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage(),
+            ], 500);
+        }
     }
 
     /**
