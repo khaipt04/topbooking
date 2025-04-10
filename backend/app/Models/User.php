@@ -12,28 +12,11 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    public $incrementing = false;
-    protected $keyType = 'string';
-
     protected $fillable = [
         'name',
         'email',
         'password',
     ];
-
-    protected static function booted(): void
-    {
-        static::creating(function ($user) {
-            if (empty($user->uuid)) {
-                $user->uuid = Str::uuid()->toString();
-            }
-        });
-    }
-
-    public function getRouteKeyName(): string
-    {
-        return 'id';
-    }
 
     protected $hidden = [
         'password',
