@@ -12,6 +12,9 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    public $incrementing = false;
+    protected $keyType = 'string';
+
     protected $fillable = [
         'name',
         'email',
@@ -25,6 +28,11 @@ class User extends Authenticatable
                 $user->uuid = Str::uuid()->toString();
             }
         });
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return 'id';
     }
 
     protected $hidden = [
