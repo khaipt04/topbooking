@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreHotelUtility;
+use App\Http\Requests\UpdateHotelUtility;
 use App\Models\HotelUtility;
 use Illuminate\Http\Request;
 
@@ -98,9 +99,32 @@ class HotelUtilityController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateHotelUtility $request, string $id)
     {
-        //
+        try {
+            $utility = HotelUtility::find($id);
+
+            if(empty($utility)){
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Tiện nghi không tồn tại.'
+                ], 404);
+            }
+
+            $utility->fill($request->all());
+            $utility->update();
+
+            return response()->json([
+                'success' => true,
+                'data' => $utility,
+                'message' => 'Cập nhật thông tin tiện nghi thành công.'
+            ]);
+        }catch (\Exception $e){
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage(),
+            ], 500);
+        }
     }
 
     /**
