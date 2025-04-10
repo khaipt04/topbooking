@@ -132,6 +132,27 @@ class HotelUtilityController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $utility = HotelUtility::find($id);
+
+            if(empty($utility)){
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Tiện nghi không tồn tại.'
+                ], 404);
+            }
+
+            $utility->delete();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Xóa tiện nghi thành công.'
+            ]);
+        }catch (\Exception $e){
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage(),
+            ], 500);
+        }
     }
 }
