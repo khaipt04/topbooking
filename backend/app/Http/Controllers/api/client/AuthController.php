@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api\client;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
 class AuthController extends Controller
@@ -33,7 +34,7 @@ class AuthController extends Controller
     {
         try {
             $dataLogin = $request->all();
-            $token = auth()->attempt($dataLogin);
+            $token = Auth::attempt($dataLogin);
 
             if (!$token) {
                 return response()->json([
@@ -46,8 +47,8 @@ class AuthController extends Controller
                 'success' => true,
                 'message' => 'Đăng nhập thành công!',
                 'token' => $token,
-                'token_type'   => 'bearer',
-                'expires_in'   => auth()->factory()->getTTL() * 60
+                'token_type' => 'bearer',
+                'expires_in' => Auth::factory()->getTTL() * 60
             ]);
         }catch (\Exception $e){
             return response()->json([
@@ -60,7 +61,7 @@ class AuthController extends Controller
     public function logout()
     {
         try {
-            auth()->logout();
+            Auth::logout();
             return response()->json([
                 'message' => 'Đăng xuất thành công!'
             ]);
@@ -75,14 +76,14 @@ class AuthController extends Controller
     public function refresh()
     {
         try {
-            $token = auth()->refresh();
+            $token = Auth::refresh();
 
             return response()->json([
                 'success' => true,
-                'message' => 'Đăng nhập thành công!',
+                'message' => 'Refresh token thành công!',
                 'token' => $token,
-                'token_type'   => 'bearer',
-                'expires_in'   => auth()->factory()->getTTL() * 60
+                'token_type' => 'bearer',
+                'expires_in' => Auth::factory()->getTTL() * 60
             ]);
         }catch (\Exception $e){
             return response()->json([
