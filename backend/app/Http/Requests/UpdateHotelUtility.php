@@ -16,7 +16,7 @@ class UpdateHotelUtility extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
+            'name' => 'required|string|unique:hotel_utility,name',
             'icon' => 'required|string',
         ];
     }
@@ -26,6 +26,7 @@ class UpdateHotelUtility extends FormRequest
         return [
             'name.required' => 'Tên không được để trống.',
             'name.string' => 'Tên không hợp lệ.',
+            'name.unique' => 'Tên đã tồn tại.',
             'icon.required' => 'Icon không được để trống.',
             'icon.string' => 'Icon không hợp lệ.'
         ];

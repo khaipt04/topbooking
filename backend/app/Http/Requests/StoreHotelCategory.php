@@ -16,7 +16,7 @@ class StoreHotelCategory extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
+            'name' => 'required|string|unique:hotel_categories,name',
             'image' => 'required|file|image|mimes:jpeg,png,jpg|max:20480',
         ];
     }
@@ -26,6 +26,7 @@ class StoreHotelCategory extends FormRequest
         return [
             'name.required' => 'Tên không được để trống.',
             'name.string' => 'Tên không hợp lệ.',
+            'name.unique' => 'Tên đã tồn tại.',
             'image.required' => 'Vui lòng tải lên hình ảnh.',
             'image.file' => 'File không hợp lệ.',
             'image.image' => 'File không hợp lệ.',

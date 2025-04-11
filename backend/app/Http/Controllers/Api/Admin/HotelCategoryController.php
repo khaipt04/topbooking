@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Api\Admin;
 
+use App\Helpers\CodeHelper;
 use App\Helpers\ErrorHelper;
 use App\Helpers\ImageHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreHotelCategory;
+use App\Http\Requests\UpdateHotelCategory;
 use App\Models\HotelCategory;
 use Illuminate\Http\Request;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
 
 class HotelCategoryController extends Controller
 {
@@ -49,8 +52,9 @@ class HotelCategoryController extends Controller
                 'image_path' => null,
                 'image_url' => null
             ];
-            try {
-                if ($request->hasFile('image')) {
+
+            if ($request->hasFile('image')) {
+                try {
                     $file = $request->file('image');
 
                     $image = ImageHelper::resizeToSquare($file);
@@ -67,18 +71,17 @@ class HotelCategoryController extends Controller
                         'image_path' => $relativePath,
                         'image_url' => asset('storage/' . $relativePath)
                     ];
+                } catch (\Exception $e) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => ErrorHelper::handle($e)
+                    ], 500);
                 }
-            }catch (\Exception $e){
-                return response()->json([
-                    'success' => false,
-                    'message' => ErrorHelper::handle($e)
-                ], 500);
             }
 
             $data = $request->only('name');
 
-            $initials = collect(explode(' ', $data['name']))->filter()->map(fn($word) => strtoupper($word[0]))->implode('');
-            $code = 'HCT' . rand(1000, 9999) . '-' . $initials . '-' . rand(1000, 9999);
+            $code = CodeHelper::createCode('HC', $data['name']);
 
             $hotelCategory = new HotelCategory();
             $hotelCategory->code = $code;
@@ -132,9 +135,32 @@ class HotelCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateHotelCategory $request, string $id)
     {
-        //
+        try {
+            $category = HotelCategory::find($id);
+
+            if(empty($category)){
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Loại chỗ nghỉ không tồn tại.'
+                ], 404);
+            }
+
+            $category->fill($request->all());
+            $category->update();
+
+            return response()->json([
+                'success' => true,
+                'data' => $category,
+                'message' => 'Cập nhật thông tin loại chỗ nghỉ thành công.'
+            ]);
+        }catch (\Exception $e){
+            return response()->json([
+                'success' => false,
+                'message' => ErrorHelper::handle($e)
+            ], 500);
+        }
     }
 
     /**

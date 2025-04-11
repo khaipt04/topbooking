@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Admin;
 
+use App\Helpers\CodeHelper;
 use App\Helpers\ErrorHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreHotelUtility;
@@ -46,8 +47,8 @@ class HotelUtilityController extends Controller
     {
         try {
             $data = $request->all();
-            $initials = collect(explode(' ', $data['name']))->filter()->map(fn($word) => strtoupper($word[0]))->implode('');
-            $code = 'UT' . rand(1000, 9999) . '-' . $initials . '-' . rand(1000, 9999);
+
+            $code = CodeHelper::createCode('HU', $data['name']);
 
             $hotelUtility = new HotelUtility();
             $hotelUtility->code = $code;
