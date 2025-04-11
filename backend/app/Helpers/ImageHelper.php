@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Imagick\Driver;
+use Illuminate\Support\Facades\Storage;
 
 class ImageHelper
 {
@@ -29,6 +30,15 @@ class ImageHelper
             'image_path' => $relativePath,
             'image_url' => asset('storage/' . $relativePath)
         ];
+    }
+
+    public static function deleteImage($path)
+    {
+        $isExist = Storage::disk('public')->exists($path);
+
+        if ($isExist) {
+            Storage::disk('public')->delete($path);
+        }
     }
 
     public static function resizeToSquare($file)
