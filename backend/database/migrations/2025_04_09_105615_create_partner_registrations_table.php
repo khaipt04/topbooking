@@ -21,7 +21,8 @@ return new class extends Migration
             $table->string('hotel_email');
             $table->string('hotel_phone');
             $table->text('note');
-            $table->text('license_image');
+            $table->text('license_image_path');
+            $table->text('license_image_url');
             $table->timestamps();
         });
     }

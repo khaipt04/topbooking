@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->foreignId('user_id')->constrained('users');
             $table->string('name')->unique();
-            $table->text('thumbnail')->nullable();
+            $table->text('thumbnail_path')->nullable();
+            $table->text('thumbnail_url')->nullable();
             $table->foreignId('city_id')->constrained('cities');
             $table->string('address');
             $table->string('email')->unique();

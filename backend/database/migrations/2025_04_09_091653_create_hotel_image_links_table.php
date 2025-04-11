@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('hotel_image_links', function (Blueprint $table) {
             $table->id();
             $table->foreignId('hotel_id')->constrained('hotels');
-            $table->text('image');
+            $table->text('image_path');
+            $table->text('image_url');
             $table->timestamps();
         });
     }
