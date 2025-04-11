@@ -14,11 +14,11 @@ use App\Http\Controllers\Api\Admin\HotelUtilityController;
 Route::prefix('auth')->group(function () {
     Route::post('login', [AuthController::class, 'login']);
     Route::post('register', [AuthController::class, 'register']);
-    Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:api');
-    Route::post('refresh', [AuthController::class, 'refresh'])->middleware('auth:api');
+    Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:Api');
+    Route::post('refresh', [AuthController::class, 'refresh'])->middleware('auth:Api');
 });
 
-Route::prefix('admin')->middleware(['auth:api', 'isAdmin'])->group(function () {
+Route::prefix('admin')->middleware(['auth:Api', 'isAdmin'])->group(function () {
     Route::apiResource('utilities', HotelUtilityController::class);
 });
 
