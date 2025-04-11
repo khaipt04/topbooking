@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\Client\AuthController;
 
 //admin
 use App\Http\Controllers\Api\Admin\HotelUtilityController;
+use App\Http\Controllers\Api\Admin\HotelCategoryController;
 
 
 
@@ -19,7 +20,10 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::prefix('admin')->middleware(['auth:Api', 'isAdmin'])->group(function () {
-    Route::apiResource('utilities', HotelUtilityController::class);
+    Route::prefix('hotel')->group(function () {
+        Route::apiResource('utilities', HotelUtilityController::class);
+        Route::apiResource('categories', HotelCategoryController::class);
+    });
 });
 
 Route::get('/user', function (Request $request) {
