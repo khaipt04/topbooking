@@ -48,29 +48,12 @@ class HotelCategoryController extends Controller
     public function store(StoreHotelCategory $request)
     {
         try {
-            $dataImage = [
-                'image_path' => null,
-                'image_url' => null
-            ];
+            $dataImage = null;
 
             if ($request->hasFile('image')) {
                 try {
                     $file = $request->file('image');
-
-                    $image = ImageHelper::resizeToSquare($file);
-
-                    $extension = $file->getClientOriginalExtension();
-                    $imageName = 'htc_' . now()->format('Ymd_His') . '_' . uniqid() . '.' . $extension;
-
-                    $relativePath = 'uploads/hotelcategoryimages/' . $imageName;
-                    $fullPath = storage_path('app/public/' . $relativePath);
-
-                    $image->save($fullPath);
-
-                    $dataImage = [
-                        'image_path' => $relativePath,
-                        'image_url' => asset('storage/' . $relativePath)
-                    ];
+                    $dataImage = ImageHelper::handleUpload($file, 'hotelcategoryimages', 'HCIMG_', 'square');
                 } catch (\Exception $e) {
                     return response()->json([
                         'success' => false,
@@ -147,7 +130,30 @@ class HotelCategoryController extends Controller
                 ], 404);
             }
 
-            $category->fill($request->all());
+            $dataImage = null;
+
+            if ($request->hasFile('image')) {
+                try {
+                    $file = $request->file('image');
+                    $dataImage = ImageHelper::handleUpload($file, 'hotelcategoryimages', 'HCIMG_', 'square');
+                    ImageHelper::deleteImage($category->image_path);
+                } catch (\Exception $e) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => ErrorHelper::handle($e)
+                    ], 500);
+                }
+            }
+
+            $data = $request->only('name');
+
+            $category->name = $data['name'];
+
+            if ($dataImage) {
+                $category->image_path = $dataImage['image_path'];
+                $category->image_url = $dataImage['image_url'];
+            }
+
             $category->update();
 
             return response()->json([
