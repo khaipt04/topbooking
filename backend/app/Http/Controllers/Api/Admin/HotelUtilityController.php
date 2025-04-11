@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Admin;
 
+use App\Helpers\ErrorHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreHotelUtility;
 use App\Http\Requests\UpdateHotelUtility;
@@ -33,7 +34,7 @@ class HotelUtilityController extends Controller
         }catch (\Exception $e){
             return response()->json([
                 'success' => false,
-                'message' => $e->getMessage(),
+                'message' => ErrorHelper::handle($e)
             ], 500);
         }
     }
@@ -63,7 +64,7 @@ class HotelUtilityController extends Controller
         }catch (\Exception $e){
             return response()->json([
                 'success' => false,
-                'message' => $e->getMessage(),
+                'message' => ErrorHelper::handle($e)
             ], 500);
         }
     }
@@ -91,7 +92,7 @@ class HotelUtilityController extends Controller
         }catch (\Exception $e){
             return response()->json([
                 'success' => false,
-                'message' => $e->getMessage(),
+                'message' => ErrorHelper::handle($e)
             ], 500);
         }
     }
@@ -122,7 +123,7 @@ class HotelUtilityController extends Controller
         }catch (\Exception $e){
             return response()->json([
                 'success' => false,
-                'message' => $e->getMessage(),
+                'message' => ErrorHelper::handle($e)
             ], 500);
         }
     }
@@ -151,7 +152,7 @@ class HotelUtilityController extends Controller
         }catch (\Exception $e){
             return response()->json([
                 'success' => false,
-                'message' => $e->getMessage(),
+                'message' => ErrorHelper::handle($e)
             ], 500);
         }
     }

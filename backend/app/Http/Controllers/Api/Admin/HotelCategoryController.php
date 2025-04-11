@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Api\Admin;
 
+use App\Helpers\ErrorHelper;
+use App\Helpers\ImageHelper;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreHotelCategory;
 use App\Models\HotelCategory;
 use Illuminate\Http\Request;
 
@@ -31,7 +34,7 @@ class HotelCategoryController extends Controller
         }catch (\Exception $e){
             return response()->json([
                 'success' => false,
-                'message' => $e->getMessage(),
+                'message' => ErrorHelper::handle($e)
             ], 500);
         }
     }
@@ -39,31 +42,63 @@ class HotelCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreHotelCategory $request)
     {
-//        try {
-//            $data = $request->all();
-//            $initials = collect(explode(' ', $data['name']))->filter()->map(fn($word) => strtoupper($word[0]))->implode('');
-//            $code = 'UT' . rand(1000, 9999) . '-' . $initials . '-' . rand(1000, 9999);
-//
-//            $hotelUtility = new HotelUtility();
-//            $hotelUtility->code = $code;
-//            $hotelUtility->name = $data['name'];
-//            $hotelUtility->icon = $data['icon'];
-//
-//            $hotelUtility->save();
-//
-//            return response()->json([
-//                'success' => true,
-//                'data' => $hotelUtility,
-//                'message' => 'Tạo tiện nghi thành công.'
-//            ], 201);
-//        }catch (\Exception $e){
-//            return response()->json([
-//                'success' => false,
-//                'message' => $e->getMessage(),
-//            ], 500);
-//        }
+        try {
+            $dataImage = [
+                'image_path' => null,
+                'image_url' => null
+            ];
+            try {
+                if ($request->hasFile('image')) {
+                    $file = $request->file('image');
+
+                    $image = ImageHelper::resizeToSquare($file);
+
+                    $extension = $file->getClientOriginalExtension();
+                    $imageName = 'htc_' . now()->format('Ymd_His') . '_' . uniqid() . '.' . $extension;
+
+                    $relativePath = 'uploads/hotelcategoryimages/' . $imageName;
+                    $fullPath = storage_path('app/public/' . $relativePath);
+
+                    $image->save($fullPath);
+
+                    $dataImage = [
+                        'image_path' => $relativePath,
+                        'image_url' => asset('storage/' . $relativePath)
+                    ];
+                }
+            }catch (\Exception $e){
+                return response()->json([
+                    'success' => false,
+                    'message' => ErrorHelper::handle($e)
+                ], 500);
+            }
+
+            $data = $request->only('name');
+
+            $initials = collect(explode(' ', $data['name']))->filter()->map(fn($word) => strtoupper($word[0]))->implode('');
+            $code = 'HCT' . rand(1000, 9999) . '-' . $initials . '-' . rand(1000, 9999);
+
+            $hotelCategory = new HotelCategory();
+            $hotelCategory->code = $code;
+            $hotelCategory->name = $data['name'];
+            $hotelCategory->image_path = $dataImage['image_path'];
+            $hotelCategory->image_url = $dataImage['image_url'];
+
+            $hotelCategory->save();
+
+            return response()->json([
+                'success' => true,
+                'data' => $hotelCategory,
+                'message' => 'Tạo loại chỗ nghỉ thành công.'
+            ], 201);
+        }catch (\Exception $e){
+            return response()->json([
+                'success' => false,
+                'message' => ErrorHelper::handle($e)
+            ], 500);
+        }
     }
 
     /**
@@ -89,7 +124,7 @@ class HotelCategoryController extends Controller
         }catch (\Exception $e){
             return response()->json([
                 'success' => false,
-                'message' => $e->getMessage(),
+                'message' => ErrorHelper::handle($e)
             ], 500);
         }
     }

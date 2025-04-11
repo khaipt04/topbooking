@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Client;
 
+use App\Helpers\ErrorHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Login;
 use App\Http\Requests\Register;
@@ -25,7 +26,7 @@ class AuthController extends Controller
         }catch (\Exception $e){
             return response()->json([
                 'success' => false,
-                'message' => $e->getMessage(),
+                'message' => ErrorHelper::handle($e)
             ], 500);
         }
     }
@@ -53,7 +54,7 @@ class AuthController extends Controller
         }catch (\Exception $e){
             return response()->json([
                 'success' => false,
-                'message' => $e->getMessage()
+                'message' => ErrorHelper::handle($e)
             ], 500);
         }
     }
@@ -68,7 +69,7 @@ class AuthController extends Controller
         }catch (\Exception $e){
             return response()->json([
                 'success' => false,
-                'message' => $e->getMessage()
+                'message' => ErrorHelper::handle($e)
             ], 500);
         }
     }
@@ -88,7 +89,7 @@ class AuthController extends Controller
         }catch (\Exception $e){
             return response()->json([
                 'success' => false,
-                'message' => $e->getMessage()
+                'message' => ErrorHelper::handle($e)
             ], 500);
         }
     }

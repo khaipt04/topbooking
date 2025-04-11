@@ -138,6 +138,8 @@
       <path value="$PROJECT_DIR$/backend/vendor/lcobucci/clock" />
       <path value="$PROJECT_DIR$/backend/vendor/lcobucci/jwt" />
       <path value="$PROJECT_DIR$/backend/vendor/tymon/jwt-auth" />
+      <path value="$PROJECT_DIR$/backend/vendor/intervention/gif" />
+      <path value="$PROJECT_DIR$/backend/vendor/intervention/image" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.2" />
